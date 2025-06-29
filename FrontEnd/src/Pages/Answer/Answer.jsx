@@ -213,7 +213,7 @@ const AnswerPage = () => {
   return (
     <div className={styles.answerBg}>
       <div className="appContainer">
-        <div className={styles.topSection}>
+        {/* <div className={styles.topSection}>
           <div className={styles.questionInfo}>
             {question && (
               <>
@@ -226,7 +226,7 @@ const AnswerPage = () => {
               </>
             )}
           </div>
-        </div>
+        </div> */}
         <div className="card">
           {question ? (
             <>
@@ -239,7 +239,8 @@ const AnswerPage = () => {
                     <strong>Tag:</strong> {question.tag || "No tag"}
                   </p>
 
-                  {question.userid === parseInt(localStorage.getItem("userid")) && (
+                  {question.userid ===
+                    parseInt(localStorage.getItem("userid")) && (
                     <div className={styles.buttonGroup}>
                       <button
                         onClick={() => setIsEditing(true)}
@@ -335,21 +336,32 @@ const AnswerPage = () => {
                 return (
                   <div key={answer.answerid} className={styles.answer}>
                     <div
-                      style={{ display: "flex", alignItems: "center", gap: "1rem" }}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "1rem",
+                      }}
                     >
                       {answer.profile_pic ? (
-                        <img 
-                          src={answer.profile_pic} 
-                          alt={`${answer.username}'s profile`} 
+                        <img
+                          src={answer.profile_pic}
+                          alt={`${answer.username}'s profile`}
                           className={styles.profilePic}
                           onError={(e) => {
-                            e.target.style.display = 'none';
-                            e.target.nextSibling.style.display = 'flex';
+                            e.target.style.display = "none";
+                            e.target.nextSibling.style.display = "flex";
                           }}
                         />
                       ) : null}
                       {!answer.profile_pic && (
-                        <span className={styles.profilePic} style={{display:'flex',alignItems:'center',justifyContent:'center'}}>
+                        <span
+                          className={styles.profilePic}
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        >
                           <FaUserCircle size={65} className={styles.icon} />
                         </span>
                       )}
@@ -363,7 +375,9 @@ const AnswerPage = () => {
                             />
                             <div style={{ marginTop: "0.5rem" }}>
                               <button
-                                onClick={() => handleUpdateAnswer(answer.answerid)}
+                                onClick={() =>
+                                  handleUpdateAnswer(answer.answerid)
+                                }
                                 className={styles.postButton}
                               >
                                 Save
@@ -382,13 +396,17 @@ const AnswerPage = () => {
                             <div className={styles.metaInfo}>
                               <span className={styles.timestamp}>
                                 {new Date(answer.createdate).toLocaleString()} —{" "}
-                                {answer.username ? answer.username : "Deleted User"}
+                                {answer.username
+                                  ? answer.username
+                                  : "Deleted User"}
                               </span>
                               <br />
                               <span>👁️ Views: {answer.views ?? 0}</span>
                               &nbsp;&nbsp;
                               {answer.edited && (
-                                <span style={{ color: "orange" }}>✏️ Edited</span>
+                                <span style={{ color: "orange" }}>
+                                  ✏️ Edited
+                                </span>
                               )}
                               <br />
                               <span>👍 Votes: {answer.totalVotes ?? 0}</span>
@@ -469,7 +487,7 @@ const AnswerPage = () => {
                 </div>
               </div>
             )}
-            
+
             <textarea
               className={styles.textarea}
               value={newAnswer}
